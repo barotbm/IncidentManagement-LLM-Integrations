@@ -337,5 +337,30 @@ This solution is designed to answer:
 - ❓ "What's the best way to handle versioning?"
 - ❓ "How do I trace requests across distributed systems?"
 - ❓ "How do I avoid controller pollution with cross-cutting concerns?"
+- ❓ **"How do you PROVE async APIs free threads?"** → See [ASYNC-PROOF.md](ASYNC-PROOF.md)
 
 All answers are in the code comments! 🎯
+
+---
+
+## 🔬 **NEW: Proving Async Behavior**
+
+**Staff-Level Question:** "How do you know an async API actually frees threads?"
+
+**Answer Demonstrated:** Run the validation script to see empirical proof:
+
+```powershell
+# Terminal 1: Start the API
+dotnet run
+
+# Terminal 2: Run the proof script
+.\Test-AsyncBehavior.ps1
+```
+
+**What It Proves:**
+- ✅ Synchronous endpoints (Thread.Sleep) hold threads during I/O
+- ✅ Asynchronous endpoints (Task.Delay) free threads during I/O
+- ✅ Thread pool metrics show the difference under load
+- ✅ "Fake async" (Task.Run + Thread.Sleep) still blocks threads
+
+See [ASYNC-PROOF.md](ASYNC-PROOF.md) for complete validation guide.

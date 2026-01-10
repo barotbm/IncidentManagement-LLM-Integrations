@@ -331,3 +331,24 @@ dotnet run
 ```
 
 **Then open:** https://localhost:5001/swagger 🚀
+
+---
+
+## 🔬 **BONUS: Prove Async Behavior**
+
+**Staff-Level Demo:** "How do you know async APIs free threads?"
+
+```powershell
+# Terminal 1: Keep API running
+dotnet run
+
+# Terminal 2: Run validation script
+cd c:\TFS\IncidentManagement-LLM-Integrations
+.\Test-AsyncBehavior.ps1
+```
+
+**You'll see empirical proof:**
+- Sync endpoint: 25-30 threads blocked
+- Async endpoint: 2-5 threads (reused!)
+
+See [ASYNC-PROOF.md](ASYNC-PROOF.md) for details. ✓
